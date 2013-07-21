@@ -16,20 +16,24 @@
 class User < ActiveRecord::Base
 
   has_many :episodes
+  has_many :authentications
 
-  validates :provider, presence: true
-  validates :uid, presence: true, uniqueness: { scope: :provider }
   validates :name, presence: true
 
+  accepts_nested_attributes_for :authentications
+
+
   def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      if auth['info']
-         user.name = auth['info']['name'] || ""
-         user.email = auth['info']['email'] || ""
-      end
-    end
+    Authentication.find_by_provider_and_uid(auth[:provider],
+                                            auth[:uid]).try(:user) ||
+    create!(
+      :name => auth[:info][:name],
+      :email => auth[:info][:email],
+      :authentications_attributes => [
+        Authentication.new(:provider => auth[:provider],
+                           :uid => auth[:uid]
+                          ).attributes
+      ])
   end
 
 end

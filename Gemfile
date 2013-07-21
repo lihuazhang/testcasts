@@ -1,18 +1,19 @@
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
-gem 'rails', git: 'git://github.com/rails/rails.git'
-gem 'activerecord-deprecated_finders', git: 'git://github.com/rails/activerecord-deprecated_finders.git'
-gem 'journey', git: 'git://github.com/rails/journey.git'
-gem 'strong_parameters'
+gem 'rails', '4.0.0'
+gem 'protected_attributes'
+gem 'activerecord-deprecated_finders'
+gem 'journey'
 gem 'mysql2'
 
 group :assets do
-  gem 'sass-rails',  git: 'git://github.com/rails/sass-rails.git'
-  gem 'coffee-rails', git: 'git://github.com/rails/coffee-rails.git'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier', '~> 1.2.4'
   gem 'execjs'
+  gem 'therubyracer', :platforms => :ruby
 end
 
 gem 'jquery-rails'
@@ -24,9 +25,10 @@ gem "puma"
 gem "coderay"
 gem "kaminari"
 gem "redcarpet"
+gem 'omniauth-weibo-oauth2'
 
 # Deploy with Capistrano
-gem 'capistrano', "2.13.4"
+gem 'capistrano'
 gem 'capistrano-ext'
 
 # File Uploading

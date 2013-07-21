@@ -9,7 +9,10 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module RailscastsChina
+require 'yaml'
+OMNIAUTH_CONFIG = YAML.load(File.read(File.expand_path('../omniauth_config.yml', __FILE__)))
+
+module Testcasts
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers

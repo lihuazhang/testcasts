@@ -3,10 +3,14 @@ class EpisodesController < ApplicationController
   before_filter :fetch_episode, only: [:show, :edit, :update]
 
   def index
-    @episodes = Episode.published.by_tag(params[:tag_id]).by_keywords(params[:query]).page(params[:page])
-    respond_to do |format|
-      format.html
-      format.rss
+    if request.params['error'] == 'access_denied'
+      redirect_to "/auth/failure"
+    else
+      @episodes = Episode.published.by_tag(params[:tag_id]).by_keywords(params[:query]).page(params[:page])
+      respond_to do |format|
+        format.html
+        format.rss
+      end
     end
   end
 

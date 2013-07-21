@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-RailscastsChina::Application.load_tasks
+Testcasts::Application.load_tasks
