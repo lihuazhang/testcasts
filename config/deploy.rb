@@ -1,15 +1,15 @@
 require 'bundler/capistrano'
 
-set :application, "railscasts-china"
-set :repository,  "git://github.com/pragmaticly/railscasts-china.git"
+set :application, "testcasts"
+set :repository,  "https://github.com/lihuazhang/testcasts.git"
 
-ssh_options[:user] = 'deploy'
+ssh_options[:user] = 'rails'
 ssh_options[:forward_agent] = true
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :deploy_via, :remote_cache
-set :deploy_to, "/var/www/railscasts-china"
+set :deploy_to, "/home/rails"
 
 set :use_sudo, false
 set :keep_releases, 5
@@ -17,9 +17,10 @@ set :keep_releases, 5
 set :rails_env, "production"
 set :branch, "master"
 
-role :web, "106.187.38.165"                          # Your HTTP server, Apache/etc
-role :app, "106.187.38.165"                          # This may be the same as your `Web` server
-role :db,  "106.187.38.165", :primary => true # This is where Rails migrations will run
+role :web, "testcasts.org"                          # Your HTTP server, Apache/etc
+role :app, "testcasts.org"                          # This may be the same as your `Web` server
+role :db,  "testcasts.org", :primary => true # This is where Rails migrations will run
+
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts

@@ -62,11 +62,11 @@ class Episode < ActiveRecord::Base
   end
 
   def default_url
-    "http://screencasts.b0.upaiyun.com/assets/episodes/video/#{full_name}.mp4"
+    "http://testcasts.org/assets/episodes/video/#{full_name}.mp4"
   end
 
   def still_url
-    still.url.blank? ? "http://screencasts.b0.upaiyun.com/assets/episodes/stills/#{full_name}.png" : still.url
+    still.url.blank? ? "http://testcasts.org/assets/episodes/stills/#{full_name}.png" : still.url
   end
 
   def padded_position
